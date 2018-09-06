@@ -1,3 +1,5 @@
 /web-store
 *.sqlite3
 *.pyc
+\.idea/
+*venv/
