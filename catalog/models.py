@@ -25,6 +25,9 @@ class Variation(models.Model):
     stock = models.PositiveIntegerField()
     discount = models.PositiveIntegerField()
 
+    class Meta:
+        ordering = ('stock',)  
+
     @property
     def title(self):
 
