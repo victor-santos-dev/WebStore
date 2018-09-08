@@ -1,11 +1,19 @@
 from rest_framework import serializers
-from catalog.models import Variation
+from catalog.models import Variation, ImageProduct
+
+
+class ImageProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ImageProduct
+        fields = ('image',)
+
 
 class VariationSerializer(serializers.ModelSerializer):
-    
+    image = ImageProductSerializer(many=True, read_only=True, source='product.images')
+
     class Meta:
         model = Variation
-        fields = ('id', 'name', 'product', 'price', 'stock',)
+        fields = ('id', 'name', 'product', 'price', 'stock', 'image')
 
     def create(self, validated_data):
         """
